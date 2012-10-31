@@ -84,15 +84,18 @@ This mode only provides syntax highlighting."
 
   (defun mumamo-chunk-jinja3 (pos max)
     "Find {# ... #}"
-    (mumamo-quick-chunk-forward pos max "{#" "#}" 'borders 'jinja-mode))
+    (mumamo-quick-chunk-forward pos max '("[\"']?{#") '("#}[\"']?")
+                                'borders 'jinja-mode))
 
   (defun mumamo-chunk-jinja2 (pos max)
     "Find {{ ... }}"
-    (mumamo-quick-chunk-forward pos max "{{" "}}" 'borders 'jinja-mode))
+    (mumamo-quick-chunk-forward pos max '("[\"']?{{") '("}}[\"']?")
+                                'borders 'jinja-mode))
 
   (defun mumamo-chunk-jinja (pos max)
     "Find {% ... %}"
-    (mumamo-quick-chunk-forward pos max "{%" "%}" 'borders 'jinja-mode))
+    (mumamo-quick-chunk-forward pos max '("[\"']?{%") '("%}[\"']?")
+                                'borders 'jinja-mode))
 
 ;;;###autoload
   (define-mumamo-multi-major-mode jinja-html-mumamo
